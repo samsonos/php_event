@@ -52,5 +52,7 @@ We recommend to think twice before firing event somewhere in your code, as this 
 
 ## Changing data in subscribed event handlers
 When you want to pass variable to event handler to change it just use array with references syntax:
-```Event::fire('core.routing', array(&$url, $count))```
-In the example upper we have passed a $url variable by refence to all possible subscribers to ```core.routing``` event, and if one of them will change it, it will be changed every where.
+```php
+Event::fire('core.routing', array(&$url, $count))
+```
+In the example described above we have passed a $url variable by reference to all possible subscribers to ```core.routing``` event, and if one of them will change it, it will be changed every where.
