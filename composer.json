@@ -1,0 +1,27 @@
+{
+	"name":"samsonos/php_event",
+    "description": "SamsonPHP events module",
+    "keywords": [ "event", "samsonphp"],
+    "authors":[
+        {
+            "name":"Vitaly Iegorov",
+            "email":"egorov@samsonos.com"
+        }
+    ],
+	"require":{
+    },
+    "require-dev": {
+        "satooshi/php-coveralls": "dev-master",
+        "squizlabs/php_codesniffer": "2.0.*@dev",
+        "phpunit/phpunit": "4.2.*"
+    },
+	"license":"Open Software License (OSL) v 3.0",
+	"homepage":"http://samsonos.com/",
+    "autoload" : {
+        "classmap": ["src/"],
+        "psr-0": {
+            "samsonos\\core\\": "src/",
+            "samson\\core\\": "src/"
+        }
+    }
+}
