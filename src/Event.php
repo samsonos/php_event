@@ -57,12 +57,6 @@ class Event
                     // Combine arguments
                     $args = array_merge($params, $handler[1]);
 
-                    //[PHPCOMPRESSOR(remove,start)]
-                    // Get handler function name
-                    $function = is_array($handler[0]) ? (is_string($handler[0][0]) ? $handler[0][0] : get_class($handler[0][0])).'::'.$handler[0][1] : $handler[0];
-                    Benchmark::instance()->store($function.'['.$key.']', $args);
-                    //[PHPCOMPRESSOR(remove,end)]
-
                     // Call external event handlers
                     call_user_func_array($handler[0], $args);
                 }
