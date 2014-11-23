@@ -13,6 +13,7 @@ and had to have field and function for working with it, with event approach we d
 [![Code Climate](https://codeclimate.com/github/samsonos/php_event/badges/gpa.svg)](https://codeclimate.com/github/samsonos/php_event) 
 [![Total Downloads](https://poser.pugx.org/samsonos/php_event/downloads.svg)](https://packagist.org/packages/samsonos/php_event)
 
+
 ## Basics
 We have created one simple static class to provide all this awesome features in SamsonPHP, called ```\samson\core\Event```. This class has two main simple static functions:
 * ```fire($id, $params, $signal = false)```
