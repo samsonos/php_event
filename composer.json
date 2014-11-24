@@ -24,7 +24,5 @@
             "samson\\core\\": "src/"
         }
     },
-    "extra": {
-        "samson_module_ignore": "true"
-    }
+    "extra": { "samson_module_ignore": "1" }
 }
