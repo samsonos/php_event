@@ -23,5 +23,9 @@
             "samsonos\\core\\": "src/",
             "samson\\core\\": "src/"
         }
-    }
+    },
+    "extra": {
+        "samson_module_ignore": "true"
+    },
+
 }
