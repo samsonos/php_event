@@ -8,8 +8,8 @@ From other hand, before moving to event based system, we had a lot of different 
 and had to have field and function for working with it, with event approach we dont need all this stacks, functions and other stuff anymore.
 
 [![Latest Stable Version](https://poser.pugx.org/samsonos/php_event/v/stable.svg)](https://packagist.org/packages/samsonos/php_event) 
-[![Build Status](https://travis-ci.org/samsonos/php_event.png)](https://travis-ci.org/samsonos/php_event) 
-[![Coverage Status](https://coveralls.io/repos/samsonos/php_event/badge.png)](https://coveralls.io/r/samsonos/php_event) 
+[![Build Status](https://travis-ci.org/samsonos/php_event.png)](https://travis-ci.org/samsonos/php_event)
+[![Coverage Status](https://img.shields.io/coveralls/samsonos/php_event.svg)](https://coveralls.io/r/samsonos/php_event?branch=master)
 [![Code Climate](https://codeclimate.com/github/samsonos/php_event/badges/gpa.svg)](https://codeclimate.com/github/samsonos/php_event) 
 [![Total Downloads](https://poser.pugx.org/samsonos/php_event/downloads.svg)](https://packagist.org/packages/samsonos/php_event)
 
