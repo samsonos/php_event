@@ -12,7 +12,7 @@ and had to have field and function for working with it, with event approach we d
 [![Coverage Status](https://img.shields.io/coveralls/samsonos/php_event.svg)](https://coveralls.io/r/samsonos/php_event?branch=master)
 [![Code Climate](https://codeclimate.com/github/samsonos/php_event/badges/gpa.svg)](https://codeclimate.com/github/samsonos/php_event) 
 [![Total Downloads](https://poser.pugx.org/samsonos/php_event/downloads.svg)](https://packagist.org/packages/samsonos/php_event)
-
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/samsonos/php_event/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/samsonos/php_event/?branch=master)
 
 ## Basics
 We have created one simple static class to provide all this awesome features in SamsonPHP, called ```\samson\core\Event```. This class has two main simple static functions:
