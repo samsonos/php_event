@@ -7,9 +7,7 @@
             "name":"Vitaly Iegorov",
             "email":"egorov@samsonos.com"
         }
-    ],
-	"require":{
-    },
+    ],	
     "require-dev": {
         "satooshi/php-coveralls": "dev-master",
         "phpunit/phpunit": "4.*"
