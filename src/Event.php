@@ -52,11 +52,8 @@ class Event
             if ($signal === false) {
                 // Iterate all handlers
                 foreach ($pointer as $handler) {
-                    // Combine arguments
-                    $args = array_merge($params, $handler[1]);
-
                     // Call external event handlers
-                    call_user_func_array($handler[0], $args);
+                    call_user_func_array($handler[0], array_merge($params, $handler[1]));
                 }
             } else { // Call only first event subscriber as signal and return its result
                 return call_user_func_array($pointer[0][0], array_merge($params, $pointer[0][1]));
