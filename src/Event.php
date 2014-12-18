@@ -10,7 +10,7 @@
  * @author Vitaly Egorov <egorov@samsonos.com>
  * @copyright 2014 SamsonOS
  */
-class Event 
+class Event
 {
     /** @var array Collection of registered events */
     protected static $listeners = array();
@@ -97,4 +97,3 @@ class Event
         $pointer[] = array($handler, & $params);
     }
 }
- 
