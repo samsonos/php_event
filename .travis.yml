@@ -6,11 +6,11 @@ php:
 
 before_script:
   - travis_retry composer self-update
-  - travis_retry composer install --prefer-dist --no-interaction --dev
+  - travis_retry composer install --prefer-dist --no-interaction
 
 script:
- - mkdir -p build/logs
- - phpunit --verbose --debug --coverage-clover build/logs/clover.xml
+ - phpunit --verbose --debug --coverage-clover=coverage.clover
 
 after_script:
- - vendor/bin/coveralls -v
+ - wget https://scrutinizer-ci.com/ocular.phar
+ - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
