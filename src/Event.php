@@ -44,11 +44,9 @@ class Event
 
         // If we have found listeners for this event
         if (isset($pointer)) {
-            // If any params is passed
-            if (isset($params)) {
-                // Convert it to an array
-                $params = is_array($params) ? $params : array(&$params);
-            }
+
+            // Convert params to an array
+            $params = is_array($params) ? $params : array(&$params);
 
             // If this is regular event firing
             if ($signal === false) {
@@ -82,16 +80,11 @@ class Event
         /** @var array $pointer Pointer to event handlers array */
         $pointer = & self::$listeners[$key];
 
-        // Create event handlers array
-        if (!isset($pointer)) {
-            $pointer = array();
-        }
+        // Create event handlers array if not present
+        $pointer = isset($pointer) ? $pointer : array();
 
-        // If any params is passed
-        if (isset($params)) {
-            // Convert it to an array
-            $params = is_array($params) ? $params : array(&$params);
-        }
+        // Convert params to an array
+        $params = is_array($params) ? $params : array(&$params);
 
         // Add event handler
         $pointer[] = array($handler, & $params);
