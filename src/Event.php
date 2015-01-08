@@ -98,4 +98,26 @@ class Event
         // Return event identifier
         return $eventId;
     }
+
+    /**
+     * Unsubscribe from event firing
+     * @param string $key           Event unique identifier
+     * @param string $identifier    Event identifier
+     */
+    public static function unsubscribe($key, $identifier)
+    {
+        /** @var array $pointer Pointer to event handlers array */
+        $pointer = & self::$listeners[$key];
+
+        // If we have this event handlers array
+        if (isset($pointer)) {
+            // Try to find subscription
+            $subscription = & $pointer[$identifier];
+
+            // Remove subscription if it exists
+            if (isset($subscription)) {
+                unset($subscription);
+            }
+        }
+    }
 }
