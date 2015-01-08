@@ -124,6 +124,24 @@ class EventTest extends \PHPUnit_Framework_TestCase
         // Perform test
         $this->assertGreaterThan(0, $listeners);
     }
+
+    public function testUnsubscribe()
+    {
+        // Add two subscribers
+        $identifier = \samson\core\Event::subscribe('test.unsubscribe', array($this, 'eventDynamicCallback'));
+
+        $param = 'test';
+        $result = \samson\core\Event::signal('test.unsubscribe', array(&$param));
+
+        // Perform test - only first subscriber must be executed
+        $this->assertEquals(2, $result);
+
+        \samson\core\Event::unsubscribe('test.unsubscribe', $identifier);
+
+        $result = \samson\core\Event::signal('test.unsubscribe', array(&$param));
+
+        $this->assertEquals(null, $result);
+    }
 }
 
 /** Global event callback handler */
