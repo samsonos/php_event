@@ -32,17 +32,31 @@ would be fulfilled, as we can read module documentation and subscribe only for e
 so because we cannot guarantee what events will actually fire because code can be loaded in different order(thanks to autoloading) and sucbcribe() can be called much earlier then event declaration possibly be, so we have decided and putted this responsibility on developers shoulders and only they must think of what event they subscribe on.
 
 Method declaration:
-```subscribe($key, $handler, $params = array())``` 
+```php
+subscribe($key, $handler, $params = array())
+```
+ 
 * ```$key``` - Unique event identifier, read module documentation to find out which events and when will be fired.
 * ```$handler``` - Callback, can be simple string ```callme``` if this is just a function or ```array($obj, '[method_name]')``` or ```array('[classs_name]', '[method_name]')''' for static methods.
 * ```$params``` - Collection of additional data that is needed when the event handler will be excuted, this array will be passed ass callback arguments.
+
+Every call to event subscription will return unique handler identifier for this unique event identifier, this identifier can be used to [unsubscribe](#event-unsubscribe) from event.
+ 
+## Event - Unsubscribe
+If want to remove your event subscription for some reason you need to use event identifier and handler identifier:
+Method declaration:
+```php
+unsubscribe($key, $identifier)
+```
+* ```$key``` - Unique event identifier, read module documentation to find out which events and when will be fired.
+* ```$identifier``` - Unique event handler identifier, it is returned from [event subscribe](#event-subscribe) function call.
 
 ## Event - Fire
 This method is used to tell all other listeners(modules, classes) who has subscribed to current event identifier that its being happened right here and right now. When this method is triggered its meant that this is exact place and time when all subscribers must handle current event.
 
 Method declaration:
 ```php 
-public static function fire($key, $params = array())
+function fire($key, $params = array())
 ``` 
 * ```$key``` - Unique event identifier, who fires this event must specify it in the documentation.
 * ```$params``` - Collection of additional data that will be passed to callback, this collection differs from the subscribe parameters collection as it is being send from event firing side. 
@@ -53,10 +67,11 @@ We recommend to think twice before firing event somewhere in your code, as this 
 
 # Event - Signal
 This is method is used to perform only LAST subscriber callback will be called and the result of it execution will be returned. This is done when this event must be handled only once.
-All other logic is the same as [Event - Fire](#event-fire)
+Method declaration:
 ```php 
-public static function signal($key, $params = array())
-``` 
+function signal($key, $params = array())
+```
+All other logic is the same as [Event - Fire](#event-fire)
 > For example events for routing system, you cannot use multiple routing systems in one application.
 
 ## Changing data in subscribed event handlers
@@ -65,3 +80,4 @@ When you want to pass variable to event handler to change it just use array with
 Event::fire('core.routing', array(&$url, $count))
 ```
 In the example described above we have passed a $url variable by reference to all possible subscribers to ```core.routing``` event, and if one of them will change it, it will be changed every where.
+
