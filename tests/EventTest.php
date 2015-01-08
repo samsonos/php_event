@@ -109,11 +109,11 @@ class EventTest extends \PHPUnit_Framework_TestCase
         \samson\core\Event::subscribe('test.subscribe_signal', array($this, 'eventStaticCallback'));
 
         // Fire event
-        $result = null;
-        \samson\core\Event::fire('test.subscribe_dynamic', array(&$result), true);
+        $param = 'test';
+        $result = \samson\core\Event::signal('test.subscribe_signal', array(&$param));
 
         // Perform test - only first subscriber must be executed
-        $this->assertEquals(2, $result);
+        $this->assertEquals(3, $result);
     }
     
     /** Test if listeners getter not empty after all tests */
