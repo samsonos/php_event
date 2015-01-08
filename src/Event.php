@@ -29,12 +29,8 @@ class Event
      *
      * @param string $key    Event unique identifier
      * @param mixed  $params Event additional data
-     * @param bool   $signal True if this event must be signaled only once
-     *
-     * @return mixed If signal is true then the event handler result will be returned,
-     *               otherwise null
      */
-    public static function fire($key, $params = array(), $signal = false)
+    public static function fire($key, $params = array())
     {
         // Convert to lowercase
         $key = strtolower($key);
@@ -48,16 +44,38 @@ class Event
             // Convert params to an array
             $params = is_array($params) ? $params : array(&$params);
 
-            // If this is regular event firing
-            if ($signal === false) {
-                // Iterate all handlers
-                foreach ($pointer as $handler) {
-                    // Call external event handlers
-                    call_user_func_array($handler[0], array_merge($params, $handler[1]));
-                }
-            } else { // Call only first event subscriber as signal and return its result
-                return call_user_func_array($pointer[0][0], array_merge($params, $pointer[0][1]));
+            // Iterate all handlers
+            foreach ($pointer as $handler) {
+                // Call external event handlers
+                call_user_func_array($handler[0], array_merge($params, $handler[1]));
             }
+        }
+    }
+
+    /**
+     * Signal an event.
+     * Main difference from fire that only the last added handler
+     * would be called ant it's result(return) will be returned.
+     *
+     * @param string $key    Event unique identifier
+     * @param mixed  $params Event additional data
+     * @return mixed|null Event handler result will be returned, otherwise null
+     */
+    public static function signal($key, $params = array())
+    {
+        // Convert to lowercase
+        $key = strtolower($key);
+
+        /** @var array $pointer Pointer to event handlers array */
+        $pointer = & self::$listeners[$key];
+
+        // If we have found listeners for this event
+        if (isset($pointer) && sizeof($pointer)) {
+            // Get last added handler
+            $subscription = end($pointer);
+
+            // Call found handler
+            return call_user_func_array($subscription[0], array_merge($params, $subscription[1]));
         }
 
         return null;
@@ -106,6 +124,9 @@ class Event
      */
     public static function unsubscribe($key, $identifier)
     {
+        // Convert to lowercase
+        $key = strtolower($key);
+
         /** @var array $pointer Pointer to event handlers array */
         $pointer = & self::$listeners[$key];
 
