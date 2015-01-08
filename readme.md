@@ -41,14 +41,23 @@ Method declaration:
 This method is used to tell all other listeners(modules, classes) who has subscribed to current event identifier that its being happened right here and right now. When this method is triggered its meant that this is exact place and time when all subscribers must handle current event.
 
 Method declaration:
-```fire($key,$params = array(), $signal = false)``` 
+```php 
+public static function fire($key, $params = array())
+``` 
 * ```$key``` - Unique event identifier, who fires this event must specify it in the documentation.
-* ```$params``` - Collection of additional data that will be passed to callback, this collection differs from the subscribe parameters collection as it is being send from event firing side.
-* ```signal``` - This is special parameter that is characterizes event as signal, when the signal is fired, only the first subscriber callback will be called and the result of it execution will be returned. This is done when this event must be handled only once, for example routing system, you cannot use multiple routing systems in one application(Why is that??? need to change to something more generic), the idea was that we must return something from subscribed callback.
+* ```$params``` - Collection of additional data that will be passed to callback, this collection differs from the subscribe parameters collection as it is being send from event firing side. 
 
 We recommend to think twice before firing event somewhere in your code, as this must be realy needed and usefull event to avoid system overhead.
 
 > When the actual event is trigered, system merges event fired params with subscribe parameters, event fired parameters is first to be passed to callback function. This is done in this way because there can be any amount of subscribers with different count of parameters, but the event firing parameters will never change.
+
+# Event - Signal
+This is method is used to perform only LAST subscriber callback will be called and the result of it execution will be returned. This is done when this event must be handled only once.
+All other logic is the same as [Event - Fire](#event-fire)
+```php 
+public static function signal($key, $params = array())
+``` 
+> For example events for routing system, you cannot use multiple routing systems in one application.
 
 ## Changing data in subscribed event handlers
 When you want to pass variable to event handler to change it just use array with references syntax:
