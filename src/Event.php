@@ -68,6 +68,7 @@ class Event
      * @param string    $key        Event unique identifier
      * @param callback  $handler    Callback
      * @param array     $params     Additional callback parameters
+     * @return string Event identifier
      */
     public static function subscribe($key, $handler, $params = array())
     {
@@ -77,13 +78,24 @@ class Event
         /** @var array $pointer Pointer to event handlers array */
         $pointer = & self::$listeners[$key];
 
-        // Create event handlers array if not present
-        $pointer = isset($pointer) ? $pointer : array();
+        // Create event handlers array
+        if (!isset($pointer)) {
+            $pointer = array();
+        }
 
-        // Convert params to an array
-        $params = is_array($params) ? $params : array(&$params);
+        // If any params is passed
+        if (isset($params)) {
+            // Convert it to an array
+            $params = is_array($params) ? $params : array(&$params);
+        }
+
+        // Generate unique event handler identifier
+        $eventId = uniqid();
 
         // Add event handler
-        $pointer[] = array($handler, & $params);
+        $pointer[$eventId] = array($handler, & $params);
+
+        // Return event identifier
+        return $eventId;
     }
 }
