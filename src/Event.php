@@ -97,15 +97,10 @@ class Event
         $pointer = & self::$listeners[$key];
 
         // Create event handlers array
-        if (!isset($pointer)) {
-            $pointer = array();
-        }
+        $pointer = !isset($pointer) ? array() : $pointer;
 
-        // If any params is passed
-        if (isset($params)) {
-            // Convert it to an array
-            $params = is_array($params) ? $params : array(&$params);
-        }
+        // Convert it to an array
+        $params = is_array($params) ? $params : array(&$params);
 
         // Generate unique event handler identifier
         $eventId = uniqid();
