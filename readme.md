@@ -38,7 +38,7 @@ subscribe($key, $handler, $params = array())
 ```
  
 * ```$key``` - Unique event identifier, read module documentation to find out which events and when will be fired.
-* ```$handler``` - Callback, can be simple string ```callme``` if this is just a function or ```array($obj, '[method_name]')``` or ```array('[classs_name]', '[method_name]')''' for static methods.
+* ```$handler``` - Callback, can be simple string ```callme``` if this is just a function or ```array($obj, '[method_name]')``` or ```array('[classs_name]', '[method_name]')``` for static methods.
 * ```$params``` - Collection of additional data that is needed when the event handler will be excuted, this array will be passed ass callback arguments.
 
 Every call to event subscription will return unique handler identifier for this unique event identifier, this identifier can be used to [unsubscribe](#event-unsubscribe) from event.
