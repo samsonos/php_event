@@ -23,7 +23,7 @@ We have created one simple static class to provide all this awesome features in 
 ## Event identifier
 This is the main parameter which connects event subscribers and executors, identifier must match followings standard rules:
 * must be in lowercase - as all identifiers is resolved only in lowercase
-* must consist of two parts: ```[module_name].[event_name]```
+* must consist of this parts: ```[module_name].[sub_module_name].[event_name]```
 * event name, if it is long, must be separated with underscore('_')
 All firing module, class events must specified in its documentation ```Events``` section
 
