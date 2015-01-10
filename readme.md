@@ -16,7 +16,8 @@ and had to have field and function for working with it, with event approach we d
 
 ## Basics
 We have created one simple static class to provide all this awesome features in SamsonPHP, called ```\samson\core\Event```. This class has two main simple static functions:
-* ```fire($id, $params, $signal = false)```
+* ```fire($id, $params)```
+* ```signal($id, $params)```
 * ```subscribe($id, $params)```
 
 ## Event identifier
